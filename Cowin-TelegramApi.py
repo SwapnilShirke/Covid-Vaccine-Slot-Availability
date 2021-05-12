@@ -4,18 +4,18 @@ import io
 import time
 import json
 from datetime import date
+import datetime
 
 
 
 class Main:
 
-    def process(self):
+    def process(self,date):
 
-        today = date.today().strftime("%d-%m-%Y")
-        print(today)
+        print(date)
         url = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict"
         #querystring = {"district_id": "393", "date": "31-03-2021"}
-        querystring = {"district_id": "393", "date": today}
+        querystring = {"district_id": "393", "date": date}
 
 
 
@@ -45,14 +45,15 @@ class Main:
                 row += "Date"+":" + session["date"]+"\n"
                 row += "Time Slots"+":" + str(session["slots"])+"\n"
                 row += "Register at:" + "https://selfregistration.cowin.gov.in/"+"\n"
+                row += " or register using UMANG app on mobile as it gives you option to book for current week \n"
                 row += "-------------------------------"+"\n"
                 data_all.append(row)
 
             str1 = ''.join(str(e) for e in data_all)
             print(str1)
 
-            URL1 = "http://api.telegram.org/bot1592174521:AAFXnFfa3rI-Qh_0UMhCs-k-tORoJ-1SEWc/sendMessage"
-            chat_id= "-502911489"
+            URL1 = "http://api.telegram.org/bot1592174523:AAFXnFfa3rI-Qh_0UMhCs-k-tORoJ-1SEWc/sendMessage"
+            chat_id= "-1001420977771"
             text = str1
             PARAMS = {'chat_id':chat_id,'text':text}
 
@@ -64,7 +65,10 @@ class Main:
 
 
 Object = Main()
+today = date.today().strftime("%d-%m-%Y")
 
 while True:
-    Object.process()
+    Object.process(today)
+    tomorrow = date.today() + datetime.timedelta(days=1)
+    Object.process(tomorrow.strftime("%d-%m-%y"))
     time.sleep(15)
