@@ -51,8 +51,8 @@ class Main:
             str1 = ''.join(str(e) for e in data_all)
             print(str1)
 
-            URL1 = "http://api.telegram.org/bot1592174523:AAFXnFfa3rI-Qh_0UMhCs-k-tORoJ-1SEWc/sendMessage"
-            chat_id= "-502913489"
+            URL1 = "http://api.telegram.org/bot1592174521:AAFXnFfa3rI-Qh_0UMhCs-k-tORoJ-1SEWc/sendMessage"
+            chat_id= "-502911489"
             text = str1
             PARAMS = {'chat_id':chat_id,'text':text}
 
